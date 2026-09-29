@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Outfit", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --color-solar: #FFB800;
+  --color-solar-dark: #D99B00;
+  --color-solar-light: #FFF5D6;
+  --color-vermilion: #E63946;
+  --color-vermilion-dark: #C92A37;
+  --color-charcoal: #1E1E24;
+  --color-cream: #FAF7F2;
+  --color-card: #FFFDF9;
+  --color-border-warm: #F2EAE0;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-display);
+}

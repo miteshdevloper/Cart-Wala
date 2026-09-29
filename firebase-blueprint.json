@@ -1,0 +1,234 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Registered street entrepreneur profile and preferences",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "User authentication UID"
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "phoneNumber": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "tradeType": {
+          "type": "string",
+          "enum": ["juice_chai", "chaat_snacks", "fruits_veg", "other"]
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "state": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId", "displayName"]
+    },
+    "CartOrder": {
+      "title": "CartOrder",
+      "description": "Cartwala reservation or custom order specification",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner user UID"
+        },
+        "orderId": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "tradeType": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "solarArray": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "selectedModules": {
+          "type": "array"
+        },
+        "basePrice": {
+          "type": "number"
+        },
+        "subsidyAmount": {
+          "type": "number"
+        },
+        "finalPrice": {
+          "type": "number"
+        },
+        "depositPaid": {
+          "type": "number"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "status": {
+          "type": "string",
+          "enum": ["reserved", "subsidy_verifying", "manufacturing", "dispatched", "delivered"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId", "tradeType", "solarArray", "finalPrice", "status"]
+    },
+    "SoundboxTrack": {
+      "title": "SoundboxTrack",
+      "description": "Saved vendor marketing announcements and Lyria musical melodies",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "prompt": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "audioType": {
+          "type": "string",
+          "enum": ["lyria_clip", "lyria_pro", "soundbox_call", "custom_tts"]
+        },
+        "audioData": {
+          "type": "string"
+        },
+        "durationSec": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId", "title", "audioType"]
+    },
+    "AiConsultation": {
+      "title": "AiConsultation",
+      "description": "High-thinking business ROI and PM SVANidhi subsidy calculations",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "vendorDailySales": {
+          "type": "number"
+        },
+        "fuelCostMonthly": {
+          "type": "number"
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "reasoning": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId", "city", "recommendation"]
+    },
+    "TestConnection": {
+      "title": "TestConnection",
+      "description": "Diagnostic boot connection entity",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "AdminAccount": {
+      "title": "AdminAccount",
+      "description": "Administrative credential and access role definition",
+      "type": "object",
+      "properties": {
+        "adminId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "lastLogin": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["adminId", "username", "role"]
+    }
+  },
+  "firestore": {
+    "/adminAccounts/{adminId}": {
+      "schema": {
+        "$ref": "#/entities/AdminAccount"
+      },
+      "description": "Administrative credentials and access permissions"
+    },
+    "/test/{testId}": {
+      "schema": {
+        "$ref": "#/entities/TestConnection"
+      },
+      "description": "Boot connection verification document"
+    },
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "User profiles for authenticated street vendors"
+    },
+    "/cartOrders/{orderId}": {
+      "schema": {
+        "$ref": "#/entities/CartOrder"
+      },
+      "description": "Customer reservations and configured cart specifications"
+    },
+    "/soundboxTracks/{trackId}": {
+      "schema": {
+        "$ref": "#/entities/SoundboxTrack"
+      },
+      "description": "User saved vendor callouts and Lyria generated music"
+    },
+    "/aiConsultations/{consultationId}": {
+      "schema": {
+        "$ref": "#/entities/AiConsultation"
+      },
+      "description": "Vendor business analysis with high-thinking AI reasoning"
+    }
+  }
+}

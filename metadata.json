@@ -1,0 +1,8 @@
+{
+  "name": "Remix Cartwala - Chhota Cart. Badi Soch",
+  "description": "Reimagining Bharat\u0027s street entrepreneurship with intelligent 400W rooftop solar, modular food-grade trays, smart soundbox, and PM SVANidhi subsidy support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
